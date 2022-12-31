@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: topology-updater
+        image: topology-updater
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        ports:
+            - "12788:12788"
