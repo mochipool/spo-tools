@@ -1,0 +1,19 @@
+{
+    "info": {
+        "url_png_icon_64x64": "media.mochipool.com/logo_small.png",
+        "url_png_logo": "media.mochipool.com/logo.png",
+        "location": "North America",
+        "social": {
+            "twitter_handle": "mochistakepool",
+            "telegram_handle": "",
+            "facebook_handle": "",
+            "youtube_handle": "",
+            "twitch_handle": "",
+            "discord_handle": "",
+            "github_handle": "",
+            "patreon_handle": "",
+            "linkedin_handle": "",
+            "ada_handle": ""
+        }
+    }
+}
