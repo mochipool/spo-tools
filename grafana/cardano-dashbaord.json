@@ -1123,8 +1123,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-01-04T02:51:36.345Z",
-    "to": "2023-01-04T02:53:43.580Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1154,6 +1154,6 @@
   "timezone": "",
   "title": "Cardano: Application metrics v2",
   "uid": "cardano-node-metrics",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }
