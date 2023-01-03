@@ -1,0 +1,32 @@
+{
+  "template_files": {},
+  "template_file_provenances": {},
+  "alertmanager_config": {
+    "route": {
+      "receiver": "Discord Alerts",
+      "group_by": [
+        "grafana_folder",
+        "alertname"
+      ]
+    },
+    "templates": null,
+    "receivers": [
+      {
+        "name": "Discord Alerts",
+        "grafana_managed_receiver_configs": [
+          {
+            "uid": "X1u2iRhVkz",
+            "name": "Discord Alerts",
+            "type": "discord",
+            "disableResolveMessage": false,
+            "settings": {
+              "url": "***REMOVED***",
+              "use_discord_username": true
+            },
+            "secureFields": {}
+          }
+        ]
+      }
+    ]
+  }
+}
