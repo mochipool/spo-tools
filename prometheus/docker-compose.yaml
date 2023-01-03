@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: prometheus
+        image: cardano-prom-monitor
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        network_mode: "host"
