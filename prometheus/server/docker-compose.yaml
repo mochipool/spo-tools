@@ -1,0 +1,9 @@
+# Server Deployment for Prometheus
+version: "3.9"
+
+services:
+    app:
+        container_name: prometheus
+        image: rezarajan/cardano-prom-monitor
+        restart: unless-stopped
+        network_mode: "host"
