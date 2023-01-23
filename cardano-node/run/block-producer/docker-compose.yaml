@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cardano-node-producer
+        image: inputoutput/cardano-node
+        environment:
+          - CARDANO_BLOCK_PRODUCER=true
+        volumes:
+          - ${DATABASE_PATH}:/data
+          - ${CONFIG_PATH}:/configuration
+          - ${SOCKET_PATH}:/ipc
+          - ${PRIV_PATH}:/priv
+        restart: unless-stopped
+        network_mode: "host"
+        command: ["run", 
+                  "--config /configuration/config.json",
+                  "--topology /configuration/topology.json",
+                  "--port 4001",
+                  "--database-path /data",
+                  "--socket-path /ipc/node.socket",
+                  "--shelley-kes-key /priv/pool/keys/kes.skey",
+                  "--shelley-vrf-key /priv/pool/keys/vrf.skey",
+                  "--shelley-operational-certificate /priv/pool/keys/node.opcert"]
