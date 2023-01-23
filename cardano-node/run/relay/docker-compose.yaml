@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cardano-node-relay
+        image: inputoutput/cardano-node
+        volumes:
+          - ${DATABASE_PATH}:/data
+          - ${CONFIG_PATH}:/configuration
+          - ${SOCKET_PATH}:/ipc
+        restart: unless-stopped
+        network_mode: "host"
+        command: ["run", 
+                  "--config /configuration/config.json",
+                  "--topology /configuration/topology.json",
+                  "--port 4001",
+                  "--database-path /data",
+                  "--socket-path /ipc/node.socket"]
