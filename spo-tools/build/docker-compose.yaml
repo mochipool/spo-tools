@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cardano-spo-tools
+        image: cardano-spo-tools
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+          - /dev:/dev
+          - ${PRIV_PATH}:/shared/priv
+          - ${COMMON_PATH}:/shared/common
+        devices:
+          - "${HIDDEV:-/dev/null}:${HIDDEV:-/dev/null}"
+        stdin_open: true 
+        tty: true

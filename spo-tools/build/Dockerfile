@@ -7,7 +7,7 @@ USER root
 WORKDIR /
 
 # Setup
-RUN apt-get update && apt-get install --no-install-recommends -y locales apt-utils wget jq curl bc xxd git vim usbutils ca-certificates procps
+RUN apt-get update && apt-get install --no-install-recommends -y locales apt-utils wget jq curl bc xxd git vim usbutils ca-certificates procps gnupg
 RUN mkdir -p /shared/common /shared/common/priv/wallets /ipc /opt/cnode/configs
 
 # Cosmetic Changes (zsh)
