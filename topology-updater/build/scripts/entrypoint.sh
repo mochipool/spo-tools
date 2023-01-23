@@ -15,6 +15,10 @@ echo "Loading crontab file: $CRON_FILE"
 # Load the crontab file
 crontab $CRON_FILE
 
+# Load environment variables for cron
+echo "Loading environment variables"
+printenv | grep -v "no_proxy" >> /etc/environment
+
 # Start cron
 echo "Starting cron..."
 cron -f

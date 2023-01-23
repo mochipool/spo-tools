@@ -20,7 +20,7 @@ CNODE_HOSTNAME="CHANGE ME"  # (Optional) Must resolve to the IP you are requesti
 CNODE_PORT=4001
 CNODE_VALENCY=1             # (Optional) for multi-IP hostnames
 MAX_PEERS=15                # Maximum number of peers to return on successful fetch (note that a single peer may include valency of up to 3)
-CUSTOM_PEERS="10.116.0.3,4001"        # *Additional* custom peers to (IP,port[,valency]) to add to your target topology.json
+CUSTOM_PEERS="${CUSTOM_PEERS}"        # *Additional* custom peers to (IP,port[,valency]) to add to your target topology.json
                             # eg: "10.0.0.1,3001|10.0.0.2,3002|relays.mydomain.com,3003,3"
 #BATCH_AUTO_UPDATE=N        # Set to Y to automatically update the script if a new version is available without user interaction
 
