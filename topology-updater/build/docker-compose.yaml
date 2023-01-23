@@ -4,6 +4,11 @@ services:
     app:
         container_name: topology-updater
         image: topology-updater
+        volumes:
+          - ${LOG_DIR}:/opt/cardano/shared/logs
+          - ${CONFIG_DIR}:/opt/cardano/shared/configs
+        environment:
+            - CUSTOM_PEERS=${CUSTOM_PEERS}
         build:
             context: .
             dockerfile: Dockerfile
