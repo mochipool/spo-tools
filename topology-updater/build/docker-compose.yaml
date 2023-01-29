@@ -13,5 +13,4 @@ services:
             context: .
             dockerfile: Dockerfile
         restart: unless-stopped
-        ports:
-            - "12788:12788"
+        network_mode: "host"
