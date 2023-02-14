@@ -1,8 +1,7 @@
 {
-    "name": "Mochi",
-    "description": "Creating a reliable, simple, and delightful staking experience on Cardano.",
-    "ticker": "MOCHI",
-    "homepage": "https://mochipool.com",
-    "extended": "https://metadata.mochipool.com/mochi-extended.json"
-  }
-  
+  "name": "Mochi",
+  "description": "Creating a reliable, simple, and delightful staking experience on Cardano.",
+  "ticker": "MOCHI",
+  "homepage": "https://mochipool.com",
+  "extended": "https://metadata.mochipool.com/mochi-extended.json"
+}
