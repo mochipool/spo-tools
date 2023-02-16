@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cncli-sync
+        image: cncli-sync
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+          - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
+          - NODE_HOST=${NODE_HOST:-matcha.mochipool.com}
+          - NODE_PORT=${NODE_PORT:-4001}
+        volumes:
+          - ${CNCLI_PATH}:${CNODE_HOME:-/opt/cnode}/cncli
+        stdin_open: true 
+        tty: true
