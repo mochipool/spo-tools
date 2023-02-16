@@ -9,14 +9,13 @@ USER root
 WORKDIR /
 
 # Setup
-RUN apt-get update && apt-get install --no-install-recommends -y locales apt-utils wget jq curl bc xxd git vim usbutils ca-certificates procps gnupg
+RUN apt-get update && apt-get install --no-install-recommends -y locales apt-utils wget jq curl bc xxd git vim usbutils ca-certificates procps gnupg cron
 RUN mkdir -p /shared/common /shared/common/priv/wallets /ipc /opt/cnode/configs
 
 # Fetch Cardano CLI Binaries
 RUN wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-$CNODE_VERSION-linux.tar.gz \
     && tar -xvf cardano-node-$CNODE_VERSION-linux.tar.gz -C /usr/local/bin \
-    && rm cardano-node-$CNODE_VERSION-linux.tar.gz \
-    && rm /usr/local/bin/cardano-node
+    && rm cardano-node-$CNODE_VERSION-linux.tar.gz
 
 # Fetch CNCLI
 RUN wget https://github.com/cardano-community/cncli/releases/download/v$CNCLI_VERSION/cncli-$CNCLI_VERSION-x86_64-unknown-linux-gnu.tar.gz \
