@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cncli
+        image: cncli
+        environment:
+          - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+        volumes:
+          - ${PRIV_PATH}:/shared/priv
+          - ${COMMON_PATH}:/shared/common
+          - ${SOCKET_PATH}:/ipc
+        stdin_open: true 
+        tty: true
