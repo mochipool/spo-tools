@@ -1,7 +1,9 @@
-FROM debian:stable-slim
+FROM ubuntu:latest
 
 LABEL desc="Mochi SPO Tools"
 ARG DEBIAN_FRONTEND=noninteractive
+ARG CNODE_VERSION=1.35.5
+ARG CNCLI_VERSION=5.3.0
 
 USER root
 WORKDIR /
@@ -15,7 +17,6 @@ RUN apt-get update && apt install -y zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Fetch Cardano Node Binaries
-ARG CNODE_VERSION=1.35.4
 RUN wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-$CNODE_VERSION-linux.tar.gz \
     && tar -xvf cardano-node-$CNODE_VERSION-linux.tar.gz -C /usr/local/bin \
     && rm cardano-node-$CNODE_VERSION-linux.tar.gz
@@ -26,6 +27,11 @@ RUN wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.12.0/
     && rm cardano-hw-cli-1.12.0_linux-x64.tar.gz \
     && mv /tmp/cardano-hw-cli/* /usr/local/bin/ \
     && rm -rf tmp/cardano-hw-cli
+
+# Fetch CNCLI
+RUN wget https://github.com/cardano-community/cncli/releases/download/v$CNCLI_VERSION/cncli-$CNCLI_VERSION-x86_64-unknown-linux-gnu.tar.gz \
+    && tar -xzf cncli-$CNCLI_VERSION-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/ \
+    && rm cncli-$CNCLI_VERSION-x86_64-unknown-linux-gnu.tar.gz
 
 # Pull SPO scripts
 RUN mkdir -p $HOME/stakepoolscripts \
