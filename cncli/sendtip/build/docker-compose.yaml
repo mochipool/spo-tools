@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cncli-sendtip
+        image: cncli-sendtip
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+          - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
+        volumes:
+          - ${CNCLI_PATH}:${CNODE_HOME:-/opt/cnode}/cncli
+        stdin_open: true 
+        tty: true
