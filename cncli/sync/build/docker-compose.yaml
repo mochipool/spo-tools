@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sync
         image: cncli-sync
+        restart: unless-stopped
         build:
             context: .
             dockerfile: Dockerfile

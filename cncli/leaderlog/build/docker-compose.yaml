@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sendslots
         image: cncli-sendslots
+        restart: unless-stopped
         build:
             context: .
             dockerfile: Dockerfile

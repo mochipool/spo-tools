@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sendtip
         image: cncli-sendtip
+        restart: unless-stopped
         build:
             context: .
             dockerfile: Dockerfile

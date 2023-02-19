@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sendtip
         image: cncli-sendtip
+        restart: unless-stopped
         environment:
           - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
         volumes:

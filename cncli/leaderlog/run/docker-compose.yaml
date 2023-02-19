@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sendslots
         image: cncli-sendslots
+        restart: unless-stopped
         environment:
           - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
           - LOG_DIR=${CNODE_HOME:-/opt/cnode}/logs

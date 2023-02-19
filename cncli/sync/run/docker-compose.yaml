@@ -4,6 +4,7 @@ services:
     app:
         container_name: cncli-sync
         image: cncli-sync
+        restart: unless-stopped
         environment:
           - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
           - NODE_HOST=${NODE_HOST:-matcha.mochipool.com}
