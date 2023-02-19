@@ -1,0 +1,3 @@
+15 21 * * * /opt/cardano/scripts/cncli-fivedays.sh && /opt/cardano/scripts/cncli-leaderlog.sh
+15 21 * * * /opt/cardano/scripts/cncli-fivedays.sh && /opt/cardano/scripts/cncli-sendslots.sh
+

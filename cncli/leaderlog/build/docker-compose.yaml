@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: cncli-leaderlog
+        image: cncli-leaderlog
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+          - CNODE_HOME=${CNODE_HOME:-/opt/cnode}
+          - LOG_DIR=${CNODE_HOME:-/opt/cnode}/logs
+          - CARDANO_NODE_SOCKET_PATH=${CNODE_HOME:-/opt/cnode}/ipc/node.socket
+        volumes:
+          - ${CNCLI_PATH}:${CNODE_HOME:-/opt/cnode}/cncli
+          - ${PRIV_PATH}:${CNODE_HOME:-/opt/cnode}/priv
+          - ${LOG_DIR}:${CNODE_HOME:-/opt/cnode}/logs
+          - ${CNODE_SOCKET_PATH}:${CNODE_HOME:-/opt/cnode}/ipc
+        stdin_open: true 
+        tty: true
