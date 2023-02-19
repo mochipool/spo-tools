@@ -12,7 +12,7 @@ MOCHI=`cncli leaderlog \
     --pool-stake $POOL_STAKE \
     --active-stake $ACTIVE_STAKE \
     --consensus praos \
-    --ledger-set next`
+    --ledger-set current`
 
 EPOCH=`jq .epoch <<< $MOCHI`
 
