@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: guild-relay
+        image: cardanocommunity/cardano-node
+        environment:
+          - NETWORK=mainnet
+        volumes:
+          - ${DATABASE_PATH}:/opt/cardano/cnode/db
+          - ${CONFIG_PATH}:/opt/cardano/cnode/priv
+          - ${SOCKET_PATH}:/opt/cardano/cnode/sockets
+        security_opt:
+          - no-new-privileges
+        restart: unless-stopped
+        network_mode: "host"
