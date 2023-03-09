@@ -7,6 +7,7 @@ services:
         environment:
           - NETWORK=mainnet
           - CONFIG=/opt/cardano/cnode/priv/config.json
+          - TOPOLOGY=/opt/cardano/cnode/priv/topology.json
         volumes:
           - ${DATABASE_PATH}:/opt/cardano/cnode/db
           - ${CONFIG_PATH}:/opt/cardano/cnode/priv
