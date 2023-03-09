@@ -6,6 +6,7 @@ services:
         image: cardanocommunity/cardano-node
         environment:
           - NETWORK=mainnet
+          - CONFIG=/opt/cardano/cnode/priv/config.json
         volumes:
           - ${DATABASE_PATH}:/opt/cardano/cnode/db
           - ${CONFIG_PATH}:/opt/cardano/cnode/priv
