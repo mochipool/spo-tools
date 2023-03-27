@@ -13,7 +13,7 @@ ENV \
     LANGUAGE=en_US.UTF-8 \
     CNODE_HOME=/opt/cardano/cnode \
     CARDANO_NODE_SOCKET_PATH=$CNODE_HOME/sockets/node0.socket \
-    PATH=/opt/cardano/cnode/scripts:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/home/guild/.local/bin \
+    PATH=/opt/cardano/cnode/scripts:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/home/mochi/.local/bin \
     GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt
 
 
@@ -37,9 +37,9 @@ RUN set -x && apt update \
     && cd /usr/bin \
     && wget http://www.vdberg.org/~richard/tcpping \
     && chmod 755 tcpping \
-    && adduser --disabled-password --gecos '' guild \
+    && adduser --disabled-password --gecos '' mochi \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-    && adduser guild sudo 
+    && adduser mochi sudo 
 
 
 # Fetch Cardano Node Binaries
@@ -49,32 +49,32 @@ RUN mv -t /root/.local/bin cardano-node cardano-cli cardano-submit-api bech32 \
     && chmod +x /root/.local/bin/* \
     && rm -f cnode.tar.gz
 
-USER guild
-WORKDIR /home/guild
+USER mochi
+WORKDIR /home/mochi
 
 # Commit Version
 RUN  curl -sL -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/cardano-community/guild-operators/commits | grep -v md | grep -A 2 guild-deploy.sh | grep sha | head -n 1 | cut -d "\"" -f 4 > ~/guild-latest.txt \
-    && echo "head -n 22 /home/guild/.scripts/banner.txt" >> ~/.bashrc \
-    && echo "grep MENU -A 6 /home/guild/.scripts/banner.txt | grep -v MENU" >> ~/.bashrc \
+    && echo "head -n 22 /home/mochi/.scripts/banner.txt" >> ~/.bashrc \
+    && echo "grep MENU -A 6 /home/mochi/.scripts/banner.txt | grep -v MENU" >> ~/.bashrc \
     && echo "alias env=/usr/bin/env" >> ~/.bashrc \
     && echo "alias cntools=$CNODE_HOME/scripts/cntools.sh" >> ~/.bashrc \
     && echo "alias gLiveView=$CNODE_HOME/scripts/gLiveView.sh" >> ~/.bashrc \
-    && echo "export PATH=/opt/cardano/cnode/scripts:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/home/guild/.local/bin"  >> ~/.bashrc 
+    && echo "export PATH=/opt/cardano/cnode/scripts:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/home/mochi/.local/bin"  >> ~/.bashrc 
 
 # ENTRY SCRIPT
-ADD banner.txt /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh /home/guild/.scripts/
+ADD banner.txt /home/mochi/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh /home/mochi/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh /home/mochi/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh /home/mochi/.scripts/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/guild-deploy.sh /opt/cardano/cnode/scripts/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/entrypoint.sh ./
 
-RUN sudo chown -R guild:guild $CNODE_HOME/* \
-    && mkdir /home/guild/.local/ \
-    && sudo mv /root/.local/bin /home/guild/.local/ \
-    && sudo chown -R guild:guild /home/guild/.* \
-    && sudo chmod a+x /home/guild/.scripts/*.sh /opt/cardano/cnode/scripts/*.sh /home/guild/entrypoint.sh
+RUN sudo chown -R mochi:mochi $CNODE_HOME/* \
+    && mkdir /home/mochi/.local/ \
+    && sudo mv /root/.local/bin /home/mochi/.local/ \
+    && sudo chown -R mochi:mochi /home/mochi/.* \
+    && sudo chmod a+x /home/mochi/.scripts/*.sh /opt/cardano/cnode/scripts/*.sh /home/mochi/entrypoint.sh
 
-HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD /home/guild/.scripts/healthcheck.sh
+HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD /home/mochi/.scripts/healthcheck.sh
 
 CMD [ "./entrypoint.sh" ]
