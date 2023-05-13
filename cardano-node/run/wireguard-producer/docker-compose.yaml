@@ -28,11 +28,11 @@ services:
       - ${SOCKET_PATH}:/ipc
       - ${PRIV_PATH}:/priv
     restart: unless-stopped
-    network_mode:
-        - service:wireguard
+    network_mode: service:wireguard
     command: ["run", 
               "--config /configuration/config.json",
               "--topology /configuration/topology.json",
+              "--host-addr 0.0.0.0",
               "--port 4001",
               "--database-path /data",
               "--socket-path /ipc/node.socket",
