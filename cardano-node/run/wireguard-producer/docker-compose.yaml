@@ -28,7 +28,8 @@ services:
       - ${SOCKET_PATH}:/ipc
       - ${PRIV_PATH}:/priv
     restart: unless-stopped
-    network_mode: "host"
+    network_mode:
+        - service:wireguard
     command: ["run", 
               "--config /configuration/config.json",
               "--topology /configuration/topology.json",
