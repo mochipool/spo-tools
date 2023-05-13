@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  wireguard:
+    image: lscr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ${WIREGUARD_PATH}:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 4001:4001
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+  cardano-node:
+    container_name: cardano-node-producer
+    image: inputoutput/cardano-node
+    environment:
+      - CARDANO_BLOCK_PRODUCER=true
+    volumes:
+      - ${DATABASE_PATH}:/data
+      - ${CONFIG_PATH}:/configuration
+      - ${SOCKET_PATH}:/ipc
+      - ${PRIV_PATH}:/priv
+    restart: unless-stopped
+    network_mode: "host"
+    command: ["run", 
+              "--config /configuration/config.json",
+              "--topology /configuration/topology.json",
+              "--port 4001",
+              "--database-path /data",
+              "--socket-path /ipc/node.socket",
+              "--shelley-kes-key /priv/pool/keys/kes.skey",
+              "--shelley-vrf-key /priv/pool/keys/vrf.skey",
+              "--shelley-operational-certificate /priv/pool/keys/node.opcert"]
